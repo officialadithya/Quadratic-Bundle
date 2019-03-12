@@ -77,10 +77,8 @@ for i in range(1, cases+1):
 
   # Makes GCF Negative if a is negative
   if a < 0:
-    finalGCF *= "-"
+    finalGCF *= -1
     
-  if finalGCF == 1:
-    finalGCF = ""
 
   # If the Discriminant is not a Perfect Square, The Quadratic cannot be factored
   sqrtDiscriminant = math.sqrt(discriminant)
@@ -173,13 +171,17 @@ for i in range(1, cases+1):
     if coefficient2 == 1:
       coefficient2 = ""
     
+    if finalGCF == 1:
+      finalGCF = ""
+      
+    
     if a != 1:
 
       if coefficient1 == "" and coefficient2 != "":
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, coefficient1, factor1, int(coefficient2), factor2))
       elif coefficient2 == "" and coefficient1 != "":
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, coefficient2, factor2))
-      else:
+      elif coefficient1 != "" and coefficient2 != "":
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2))
       
 
@@ -187,18 +189,26 @@ for i in range(1, cases+1):
       
       print("The factors are: %s(x%s)(x%s)"%(finalGCF, factor1, factor2))
     
-    
     # More Cleanup
+    if finalGCF == "":
+      finalGCF = 1
+      
+    if finalGCF < 0:
+      finalGCF *= -1
+    
+    a *= finalGCF
+    b *= finalGCF
+    c *= finalGCF
+    
     if a == 1:
       a = ""
     if b == 1:
       b = ""
-
+    
     if "-" not in str(b):
       b = "+"+str(b)
     if "-" not in str(c):
       c = "+"+str(c)
       
-
     # Final Output
-    print("The quadratic that was factored: %s(%sx^2%sx%s)"%(finalGCF, a, b, c))
+    print("The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c))
