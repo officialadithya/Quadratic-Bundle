@@ -22,7 +22,7 @@ Input should be formatted as:
   Example Input:
 
   15
-  2 5 2
+  2 5 2\n
   3 5 2
   2 9 -5
   3 -7 2
