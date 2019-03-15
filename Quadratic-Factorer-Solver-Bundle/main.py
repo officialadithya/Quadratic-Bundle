@@ -181,7 +181,7 @@ for i in range(1, cases+1):
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, coefficient1, factor1, int(coefficient2), factor2))
       elif coefficient2 == "" and coefficient1 != "":
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, coefficient2, factor2))
-      elif coefficient1 != "" and coefficient2 != "":
+      else:
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2))
       
 
