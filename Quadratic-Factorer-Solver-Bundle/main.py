@@ -3,8 +3,10 @@ import cmath
 # Imports Math Module -- GCF, SQRT
 import math
 
+# Asks for amount of cases to run
 cases = int(input("How many times would you like to execute the program?: "))
 
+# For loop, execute all cases
 for i in range(1, cases+1):
 
   # Default to Factorable = True
@@ -13,16 +15,16 @@ for i in range(1, cases+1):
   # Asks for Input
   quadratic = input("\nEnter a quadratic expression with the form ax^2+bx+c: ")
 
-  # Cleans Up Input
+  # Cleans Up Input -- Gets rid of unnecessary characters
   refinedQuadratic = quadratic.replace("^2", " ")
   refinedQuadratic = refinedQuadratic.replace("+", " ")
   refinedQuadratic = refinedQuadratic.replace("x", " ")
   refinedQuadratic = refinedQuadratic.replace("X", " ")
 
-  # Splits Input
+  # Splits Input into a list with the delimiter of " "
   refinedQuadratic = refinedQuadratic.split()
 
-  # Gets Coefficients
+  # Gets Coefficients in the form ax^2+bx+c
   a = int(refinedQuadratic[0])
   b = int(refinedQuadratic[1])
   c = int(refinedQuadratic[2])
@@ -30,7 +32,7 @@ for i in range(1, cases+1):
   # Makes Math More User Friendly
   discriminant = (b**2)-(4*a*c)
 
-  # Finds Solutions
+  # Finds Solutions -- Uses Discriminant Variable
   solution1 = ((-1*b)+cmath.sqrt(discriminant))/(2*a)
   solution2 = ((-1*b)-cmath.sqrt(discriminant))/(2*a)
 
@@ -38,7 +40,7 @@ for i in range(1, cases+1):
   solution1 = str(solution1)
   solution2 = str(solution2)
 
-  # Cleans up Solutions
+  # Cleans up Solutions -- CMATH adds 0j if no imaginary numbers
   if "-0j" in solution1:
     solution1 = solution1.replace("-0j","")
   if "-0j" in solution2:
@@ -68,7 +70,7 @@ for i in range(1, cases+1):
     print("\nThis quadratic function cannot be factored.")
     exit()
 
-  # Factors out GCF
+  # Factors out GCF of the polynomial
   initialGCF = math.gcd(a,b)
   finalGCF = math.gcd(initialGCF,c)
   a //= finalGCF
@@ -129,11 +131,11 @@ for i in range(1, cases+1):
       solution1 = float(solution1)
       solution2 = float(solution2)
 
-      # Find Factors
+      # Find Initial Factors
       factor1 = -1*solution1
       factor2 = -1*solution2
 
-      # Make factors negative if a is negative
+      # Make factors negative if a is negative, also get rid of any decimals
       if a < 0:
         factor1 *= -1*a
         factor2 *= -1*a
@@ -175,6 +177,7 @@ for i in range(1, cases+1):
       finalGCF = ""
       
     
+    # Makes the output not print coefficients of 1
     if a != 1:
 
       if coefficient1 == "" and coefficient2 != "":
@@ -185,7 +188,7 @@ for i in range(1, cases+1):
         print("The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2))
       
 
-    else:
+    else: # If a is 1,
       
       print("The factors are: %s(x%s)(x%s)"%(finalGCF, factor1, factor2))
     
