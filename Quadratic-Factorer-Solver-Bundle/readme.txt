@@ -40,7 +40,7 @@ Input should be formatted as:
   OR
 
   15
-  2x^2+5+2
+  2x^2+5x+2
   3x^2+5x+2
   2x^2+9x-5
   3x^2-7x+2
