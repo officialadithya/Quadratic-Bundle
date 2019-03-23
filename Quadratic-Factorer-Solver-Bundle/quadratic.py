@@ -1,13 +1,16 @@
 # Imports Needed Modules
 from tkinter import * # GUI
-import math # GCF, SQRT
+from tkinter import messagebox # Error MSG
+import math # GCF, SQRT 
 import cmath # Quadratic Formula
+import time # time.sleep
 
 
 # Defines a function, does all work, to be called on Button Press
 def quadraticProgram():
-
+      
   # Gets Input from Textbox
+  global userInputEntry
   quadratic = userInputEntry.get()
 
 
@@ -17,16 +20,20 @@ def quadraticProgram():
   refinedQuadratic = refinedQuadratic.replace("x", " ")
   refinedQuadratic = refinedQuadratic.replace("X", " ")
   
-  # Splits Input into a list with thedelimiter of " "
+  # Splits Input into a list with the delimiter of " "
   refinedQuadratic = refinedQuadratic.split()
 
-  # Changes Elements of List to Integers
-  refinedQuadratic = list(map(int, refinedQuadratic))
-
-  # Sets Coefficients of function
-  a = refinedQuadratic[0]
-  b = refinedQuadratic[1]
-  c = refinedQuadratic[2]
+  try:
+    # Changes Elements of List to Integers
+    refinedQuadratic = list(map(int, refinedQuadratic))
+    # Sets Coefficients of function
+    a = refinedQuadratic[0]
+    b = refinedQuadratic[1]
+    c = refinedQuadratic[2]
+  except:
+    messagebox.showerror("Error","An Error Has Occured -- The Program will Terminate")
+    time.sleep(.5)
+    root.destroy()
 
   # Boolean Set to True to Initialize
   factorable = True
@@ -53,18 +60,19 @@ def quadraticProgram():
   if "+0j" in solution2:
     solution2 = solution2.replace("+0j","")
 
-  if "0j" in solution1:
-    solution1 = solution1.replace("0j","0")
-  if "0j" in solution2:
-    solution2 = solution2.replace("0j","0")
+  if "j" in solution1:
+    solution1.replace("j","i")
+  if "j" in solution2:
+    solution2.replace("j","i")
 
+    
   solution1 = solution1.replace("(","")
   solution1 = solution1.replace(")","")
   solution2 = solution2.replace("(","")
   solution2 = solution2.replace(")","")
 
   # Outputs Solutions -- With tkinter.Label
-  output = Label(root, text = "\nThe solutions are: %s and %s"%(solution1,solution2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+  output = Label(rootFrame, text = "\nThe solutions are: %s and %s"%(solution1,solution2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
   output.pack(side= "top")
 
   # Factors out GCF of the polynomial
@@ -81,7 +89,7 @@ def quadraticProgram():
   # If Complex, Cannot be Factored -- Outputs with tkinter.Label
   if "j" in solution1 or "j" in solution2:
     factorable = False
-    output = Label(root, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+    output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
     output.pack(side= "top")
 
     # Converts input back to original
@@ -106,7 +114,7 @@ def quadraticProgram():
       c = "+"+str(c)
       
     # Final Output -- With tkinter.Label
-    finalLabel = Label(root, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+    finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
     finalLabel.pack(side = "top")
 
 
@@ -125,7 +133,7 @@ def quadraticProgram():
     factorable = False
 
     # Outputs with tkinter.label
-    output = Label(root, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+    output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
     output.pack(side= "top")
 
     # Converts back to original input
@@ -150,7 +158,7 @@ def quadraticProgram():
       c = "+"+str(c)
       
     # Final Output -- With tkinter.Label
-    finalLabel = Label(root, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+    finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
     finalLabel.pack(side = "top")
 
   # If the Quadratic can be Factored
@@ -241,18 +249,18 @@ def quadraticProgram():
     if a != 1:
 
       if coefficient1 == "" and coefficient2 != "":
-        factorLabel = Label(root, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, coefficient1, factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+        factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, coefficient1, factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
         factorLabel.pack(side= "top")
       elif coefficient2 == "" and coefficient1 != "":
-        factorLabel = Label(root, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, coefficient2, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+        factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, coefficient2, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
         factorLabel.pack(side= "top")
       else:
-        factorLabel = Label(root, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+        factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
         factorLabel.pack(side= "top")
       
 
     else: # If a is 1, output with tkinter.Label
-      factorLabel = Label(root, text = "The factors are: %s(x%s)(x%s)"%(finalGCF, factor1, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+      factorLabel = Label(rootFrame, text = "The factors are: %s(x%s)(x%s)"%(finalGCF, factor1, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
       factorLabel.pack(side= "top")
 
 
@@ -278,9 +286,46 @@ def quadraticProgram():
       c = "+"+str(c)
       
     # Final Output -- With tkinter.Label
-    finalLabel = Label(root, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+    finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
     finalLabel.pack(side = "top")
 
+
+def quitProgram():
+  root.destroy()
+
+def clear():
+  global rootFrame, root, welcome, inputLabel, userInputEntry, calculateButton, clearButton
+  rootFrame.destroy()
+  rootFrame = Frame(root, bg = '#1d1f21')
+  rootFrame.pack()
+  # Welcome Label
+  welcome = Label(rootFrame, text = "Welcome to the Quadratic Program:", font = ("Courier New Bold",36), bg = '#1d1f21', fg = "#ffffff")
+  welcome.pack(side= "top")
+
+  # Input Label
+  inputLabel = Label(rootFrame, text = "Enter a Quadratic Equation:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+  inputLabel.pack(side= "top")
+
+  # Getting Input
+  userInputEntry = Entry(rootFrame)
+  userInputEntry.pack(side= "top")
+
+  userInputEntry.delete(0, END) # Delete anything in there already
+  userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
+  userInputEntry.focus() # Able to immediately start typing
+
+  # Calculate Button -- Executes earlier function
+  calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
+  calculateButton.pack(side= "top")
+
+  # Clear Button -- Executes earlier function
+
+  clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
+  clearButton.pack(side= "top")
+  
+  # Quit Button -- Executes Earlier function
+  quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
+  quitButton.pack(side= "top")
 
 # Initializes Blank Window
 root = Tk()
@@ -292,17 +337,19 @@ root.geometry('1920x1080')
 # Sets Background Color
 root.config(bg = '#1d1f21')
 
+rootFrame = Frame(root, bg = '#1d1f21')
+rootFrame.pack(side = "top")
 
 # Welcome Label
-welcome = Label(root, text = "Welcome to the Quadratic Program:", font = ("Courier New Bold",36), bg = '#1d1f21', fg = "#ffffff")
+welcome = Label(rootFrame, text = "Welcome to the Quadratic Program:", font = ("Courier New Bold",36), bg = '#1d1f21', fg = "#ffffff")
 welcome.pack(side= "top")
 
 # Input Label
-inputLabel = Label(root, text = "Enter a Quadratic Equation:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+inputLabel = Label(rootFrame, text = "Enter a Quadratic Equation:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
 inputLabel.pack(side= "top")
 
 # Getting Input
-userInputEntry = Entry(root)
+userInputEntry = Entry(rootFrame)
 userInputEntry.pack(side= "top")
 
 userInputEntry.delete(0, END) # Delete anything in there already
@@ -310,10 +357,17 @@ userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
 userInputEntry.focus() # Able to immediately start typing
 
 # Calculate Button -- Executes earlier function
-calculateButton = Button(root, text = "Calculate", highlightbackground = "#000080", command = quadraticProgram, fg = "#ffffff")
+calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
 calculateButton.pack(side= "top")
 
+# Clear Button -- Executes earlier function
 
+clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
+clearButton.pack(side= "top")
 
+# Quit Button -- Executes Earlier function
+quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
+quitButton.pack(side= "top")
 
 root.mainloop()
+
