@@ -10,7 +10,6 @@ import time # time.sleep
 def quadraticProgram():
       
   # Gets Input from Textbox
-  global userInputEntry
   quadratic = userInputEntry.get()
 
 
