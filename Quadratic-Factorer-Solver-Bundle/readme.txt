@@ -1,5 +1,10 @@
 Put all of your input in the 'input.txt' file, then run the bash script. The output will be in the file, 'output.txt'
 
+
+THE NON GUI PROGRAM IS NOW DEPRECEATED
+
+
+
 A Link to this repl: https://repl.it/@adithyabhaskara/Quadratic-Factorer-Solver-Bundle
 
 Input should be formatted as:
