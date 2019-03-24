@@ -63,9 +63,9 @@ def quadraticProgram(event):
       solution2 = solution2.replace("+0j","")
 
     if "j" in solution1:
-      solution1.replace("j","i")
+      solution1 = solution1.replace("j","i")
     if "j" in solution2:
-      solution2.replace("j","i")
+      solution2 = solution2.replace("j","i")
 
 
     solution1 = solution1.replace("(","")
