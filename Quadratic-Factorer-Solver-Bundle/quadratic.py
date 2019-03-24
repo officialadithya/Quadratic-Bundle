@@ -300,7 +300,7 @@ def quitProgram():
   root.destroy()
 
 def clear():
-  global rootFrame, root, welcome, inputLabel, userInputEntry, silverCreekLogo, logoLabel, calculateButton, clearButton
+  global rootFrame, root, welcome, inputLabel, userInputEntry, calculateButton, clearButton
   rootFrame.destroy()
   rootFrame = Frame(root, bg = '#1d1f21')
   rootFrame.pack()
@@ -319,11 +319,6 @@ def clear():
   userInputEntry.delete(0, END) # Delete anything in there already
   userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
   userInputEntry.focus() # Able to immediately start typing
-
-  # Quadratic Formula Display
-  silverCreekLogo = PhotoImage(file = "silvercreek.png")
-  logoFormLabel = Label(rootFrame, image = silverCreekLogo, bg = '#1d1f21')
-  logoFormLabel.pack(side= "bottom")
 
   # Calculate Button -- Executes earlier function
   calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
