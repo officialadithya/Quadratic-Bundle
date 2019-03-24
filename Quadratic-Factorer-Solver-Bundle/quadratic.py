@@ -1,7 +1,7 @@
 # Imports Needed Modules
 from tkinter import * # GUI
 from tkinter import messagebox # Error MSG
-import math # GCF, SQRT 
+import math # GCF, SQRT
 import cmath # Quadratic Formula
 import time # time.sleep
 
@@ -10,23 +10,23 @@ import time # time.sleep
 def quadraticProgram():
 
 
-  try:  
+  try:
     # Gets Input from Textbox
     quadratic = userInputEntry.get()
 
 
     # Letters that can be used as variables
     alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    
+
     # Cleans up Input
 
     for letter in alphabet:
-      
+
       quadratic = quadratic.replace(letter," ")
-    
+
     refinedQuadratic = quadratic.replace("^2", " ")
     refinedQuadratic = refinedQuadratic.replace("+", " ")
-    
+
     # Splits Input into a list with the delimiter of " "
     refinedQuadratic = refinedQuadratic.split()
 
@@ -39,7 +39,7 @@ def quadraticProgram():
 
     # Boolean Set to True to Initialize
     factorable = True
-    
+
     # Makes Math More User Friendly -- Finds Discriminant
     discriminant = (b**2)-(4*a*c)
 
@@ -67,7 +67,7 @@ def quadraticProgram():
     if "j" in solution2:
       solution2.replace("j","i")
 
-      
+
     solution1 = solution1.replace("(","")
     solution1 = solution1.replace(")","")
     solution2 = solution2.replace("(","")
@@ -75,7 +75,7 @@ def quadraticProgram():
 
     # Outputs Solutions -- With tkinter.Label
     output = Label(rootFrame, text = "\nThe solutions are: %s and %s"%(solution1,solution2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-    output.pack(side= "top")
+    output.pack()
 
     # Factors out GCF of the polynomial
     initialGCF = math.gcd(a,b)
@@ -92,32 +92,32 @@ def quadraticProgram():
     if "j" in solution1 or "j" in solution2:
       factorable = False
       output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      output.pack(side= "top")
+      output.pack()
 
       # Converts input back to original
       if finalGCF == "":
         finalGCF = 1
-        
+
       if finalGCF < 0:
         finalGCF *= -1
-      
+
       a *= finalGCF
       b *= finalGCF
       c *= finalGCF
-      
+
       if a == 1:
         a = ""
       if b == 1:
         b = ""
-      
+
       if "-" not in str(b):
         b = "+"+str(b)
       if "-" not in str(c):
         c = "+"+str(c)
-        
+
       # Final Output -- With tkinter.Label
       finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      finalLabel.pack(side = "top")
+      finalLabel.pack()
 
 
 
@@ -136,32 +136,32 @@ def quadraticProgram():
 
       # Outputs with tkinter.label
       output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      output.pack(side= "top")
+      output.pack()
 
       # Converts back to original input
       if finalGCF == "":
         finalGCF = 1
-        
+
       if finalGCF < 0:
         finalGCF *= -1
-      
+
       a *= finalGCF
       b *= finalGCF
       c *= finalGCF
-      
+
       if a == 1:
         a = ""
       if b == 1:
         b = ""
-      
+
       if "-" not in str(b):
         b = "+"+str(b)
       if "-" not in str(c):
         c = "+"+str(c)
-        
+
       # Final Output -- With tkinter.Label
       finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      finalLabel.pack(side = "top")
+      finalLabel.pack()
 
     # If the Quadratic can be Factored
     if factorable:
@@ -188,7 +188,7 @@ def quadraticProgram():
           factor2 = "+"+str(factor2)
 
       else:
-        
+
         # Make the coefficients -a if a is negative
         if a < 0:
           coefficient1 = -1*a
@@ -232,7 +232,7 @@ def quadraticProgram():
         else:
           factor1 = int(factor1)
         if "-" not in str(factor2):
-          factor2 = "+"+str(int(factor2))  
+          factor2 = "+"+str(int(factor2))
         else:
           factor2 = int(factor2)
 
@@ -245,52 +245,52 @@ def quadraticProgram():
 
       if finalGCF == 1:
         finalGCF = ""
-        
+
 
       # Makes the output not print coefficients of 1 -- Outputs with tkinter.Label
       if a != 1:
 
         if coefficient1 == "" and coefficient2 != "":
           factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, coefficient1, factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-          factorLabel.pack(side= "top")
+          factorLabel.pack()
         elif coefficient2 == "" and coefficient1 != "":
           factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, coefficient2, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-          factorLabel.pack(side= "top")
+          factorLabel.pack()
         else:
           factorLabel = Label(rootFrame, text = "The factors are: %s(%sx%s)(%sx%s)"%(finalGCF, int(coefficient1), factor1, int(coefficient2), factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-          factorLabel.pack(side= "top")
-        
+          factorLabel.pack()
+
 
       else: # If a is 1, output with tkinter.Label
         factorLabel = Label(rootFrame, text = "The factors are: %s(x%s)(x%s)"%(finalGCF, factor1, factor2), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-        factorLabel.pack(side= "top")
+        factorLabel.pack()
 
 
       # More Cleanup -- Converts back to original input
       if finalGCF == "":
         finalGCF = 1
-        
+
       if finalGCF < 0:
         finalGCF *= -1
-      
+
       a *= finalGCF
       b *= finalGCF
       c *= finalGCF
-      
+
       if a == 1:
         a = ""
       if b == 1:
         b = ""
-      
+
       if "-" not in str(b):
         b = "+"+str(b)
       if "-" not in str(c):
         c = "+"+str(c)
-        
+
       # Final Output -- With tkinter.Label
       finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      finalLabel.pack(side = "top")
-      
+      finalLabel.pack()
+
   except:
     messagebox.showerror("Error","An Error Has Occured -- The Program will Terminate")
     time.sleep(.5)
@@ -300,21 +300,21 @@ def quitProgram():
   root.destroy()
 
 def clear():
-  global rootFrame, root, welcome, inputLabel, userInputEntry, calculateButton, clearButton
+  global rootFrame, root, welcome, inputLabel, userInputEntry, silverCreekLogo, logoLabel, calculateButton, clearButton
   rootFrame.destroy()
   rootFrame = Frame(root, bg = '#1d1f21')
   rootFrame.pack()
   # Welcome Label
   welcome = Label(rootFrame, text = "Welcome to the Quadratic Program:", font = ("Courier New Bold",36), bg = '#1d1f21', fg = "#ffffff")
-  welcome.pack(side= "top")
+  welcome.pack()
 
   # Input Label
   inputLabel = Label(rootFrame, text = "Enter a Quadratic Equation:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-  inputLabel.pack(side= "top")
+  inputLabel.pack()
 
   # Getting Input
   userInputEntry = Entry(rootFrame)
-  userInputEntry.pack(side= "top")
+  userInputEntry.pack()
 
   userInputEntry.delete(0, END) # Delete anything in there already
   userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
@@ -322,15 +322,15 @@ def clear():
 
   # Calculate Button -- Executes earlier function
   calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
-  calculateButton.pack(side= "top")
+  calculateButton.pack()
 
   # Clear Button -- Executes earlier function
   clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
-  clearButton.pack(side= "top")
-  
+  clearButton.pack()
+
   # Quit Button -- Executes Earlier function
   quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
-  quitButton.pack(side= "top")
+  quitButton.pack()
 
 # Initializes Blank Window
 root = Tk()
@@ -343,19 +343,19 @@ root.geometry('1920x1080')
 root.config(bg = '#1d1f21')
 
 rootFrame = Frame(root, bg = '#1d1f21')
-rootFrame.pack(side = "top")
+rootFrame.pack()
 
 # Welcome Label
 welcome = Label(rootFrame, text = "Welcome to the Quadratic Program:", font = ("Courier New Bold",36), bg = '#1d1f21', fg = "#ffffff")
-welcome.pack(side= "top")
+welcome.pack()
 
 # Input Label
 inputLabel = Label(rootFrame, text = "Enter a Quadratic Function:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-inputLabel.pack(side= "top")
+inputLabel.pack()
 
 # Getting Input
 userInputEntry = Entry(rootFrame)
-userInputEntry.pack(side= "top")
+userInputEntry.pack()
 
 userInputEntry.delete(0, END) # Delete anything in there already
 userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
@@ -363,15 +363,14 @@ userInputEntry.focus() # Able to immediately start typing
 
 # Calculate Button -- Executes earlier function
 calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
-calculateButton.pack(side= "top")
+calculateButton.pack()
 
 # Clear Button -- Executes earlier function
 clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
-clearButton.pack(side= "top")
+clearButton.pack()
 
 # Quit Button -- Executes Earlier function
 quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
-quitButton.pack(side= "top")
+quitButton.pack()
 
 root.mainloop()
-
