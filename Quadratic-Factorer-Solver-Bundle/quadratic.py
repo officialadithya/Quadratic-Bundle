@@ -88,39 +88,9 @@ def quadraticProgram(event):
     if a < 0:
       finalGCF *= -1
 
-    # If Complex, Cannot be Factored -- Outputs with tkinter.Label
-    if "j" in solution1 or "j" in solution2:
-      factorable = False
-      output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      output.pack()
-
-      # Converts input back to original
-      if finalGCF == "":
-        finalGCF = 1
-
-      if finalGCF < 0:
-        finalGCF *= -1
-
-      a *= finalGCF
-      b *= finalGCF
-      c *= finalGCF
-
-      if a == 1:
-        a = ""
-      if b == 1:
-        b = ""
-
-      if "-" not in str(b):
-        b = "+"+str(b)
-      if "-" not in str(c):
-        c = "+"+str(c)
-
-      # Final Output -- With tkinter.Label
-      finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
-      finalLabel.pack()
-
-
-
+    if discriminant < 0:
+      discriminant = .5 # Arbitrary number to avoid sqrt(negative_number)
+      
     # If the Discriminant is not a Perfect Square, The Quadratic cannot be factored
     sqrtDiscriminant = math.sqrt(discriminant)
 
@@ -135,7 +105,7 @@ def quadraticProgram(event):
       factorable = False
 
       # Outputs with tkinter.label
-      output = Label(rootFrame, text = "\nThis quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+      output = Label(rootFrame, text = "This quadratic function cannot be factored.", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
       output.pack()
 
       # Converts back to original input
@@ -160,7 +130,7 @@ def quadraticProgram(event):
         c = "+"+str(c)
 
       # Final Output -- With tkinter.Label
-      finalLabel = Label(rootFrame, text = "The quadratic that was factored: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+      finalLabel = Label(rootFrame, text = "The quadratic that was entered: (%sx^2%sx%s)"%(a, b, c), font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
       finalLabel.pack()
 
     # If the Quadratic can be Factored
@@ -292,9 +262,9 @@ def quadraticProgram(event):
       finalLabel.pack()
 
   except:
-    messagebox.showerror("Error","An Error Has Occured -- The Program will Terminate")
-    time.sleep(.5)
-    root.destroy()
+   messagebox.showerror("Error","An Error Has Occured -- The Program will Terminate")
+   time.sleep(.5)
+   root.destroy()
 
 def quitProgram():
   root.destroy()
