@@ -7,7 +7,7 @@ import time # time.sleep
 
 
 # Defines a function, does all work, to be called on Button Press
-def quadraticProgram():
+def quadraticProgram(event):
 
 
   try:
@@ -321,8 +321,10 @@ def clear():
   userInputEntry.focus() # Able to immediately start typing
 
   # Calculate Button -- Executes earlier function
-  calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
+  calculateButton = Button(rootFrame, text = "Calculate", fg = "#000000", highlightbackground = "#800080")
+  calculateButton.bind("<Button-1>", quadraticProgram)
   calculateButton.pack()
+  root.bind("<Return>", quadraticProgram)
 
   # Clear Button -- Executes earlier function
   clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
@@ -362,8 +364,10 @@ userInputEntry.insert(0, "ax^2+bx+c") # Sample Input
 userInputEntry.focus() # Able to immediately start typing
 
 # Calculate Button -- Executes earlier function
-calculateButton = Button(rootFrame, text = "Calculate", command = quadraticProgram, fg = "#000000", highlightbackground = "#800080")
+calculateButton = Button(rootFrame, text = "Calculate", fg = "#000000", highlightbackground = "#800080")
+calculateButton.bind("<Button-1>", quadraticProgram)
 calculateButton.pack()
+root.bind("<Return>", quadraticProgram)
 
 # Clear Button -- Executes earlier function
 clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
