@@ -350,7 +350,7 @@ welcome = Label(rootFrame, text = "Welcome to the Quadratic Program:", font = ("
 welcome.pack(side= "top")
 
 # Input Label
-inputLabel = Label(rootFrame, text = "Enter a Quadratic Equation:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
+inputLabel = Label(rootFrame, text = "Enter a Quadratic Function:", font = ("Courier New Bold", 24), bg = '#1d1f21', fg = "#ffffff")
 inputLabel.pack(side= "top")
 
 # Getting Input
