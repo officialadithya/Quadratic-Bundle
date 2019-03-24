@@ -90,7 +90,7 @@ def quadraticProgram(event):
 
     if discriminant < 0:
       discriminant = .5 # Arbitrary number to avoid sqrt(negative_number)
-      
+
     # If the Discriminant is not a Perfect Square, The Quadratic cannot be factored
     sqrtDiscriminant = math.sqrt(discriminant)
 
@@ -266,10 +266,10 @@ def quadraticProgram(event):
    time.sleep(.5)
    root.destroy()
 
-def quitProgram():
+def quitProgram(event):
   root.destroy()
 
-def clear():
+def clear(event):
   global rootFrame, root, welcome, inputLabel, userInputEntry, silverCreekLogo, logoLabel, calculateButton, clearButton
   rootFrame.destroy()
   rootFrame = Frame(root, bg = '#1d1f21')
@@ -297,12 +297,17 @@ def clear():
   root.bind("<Return>", quadraticProgram)
 
   # Clear Button -- Executes earlier function
-  clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
+  clearButton = Button(rootFrame, text = "Clear", fg = "#000000", highlightbackground = "#800080")
+  clearButton.bind("<Button-1>", clear)
   clearButton.pack()
+  root.bind("<Control-BackSpace>", clear)
+  root.bind("<Command-BackSpace>", clear)
 
   # Quit Button -- Executes Earlier function
-  quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
+  quitButton = Button(rootFrame, text = "Quit", fg = "#000000", highlightbackground = "#800080")
+  quitButton.bind("<Button-1>", quitProgram)
   quitButton.pack()
+  root.bind("<Control-q>", quitProgram)
 
 # Initializes Blank Window
 root = Tk()
@@ -340,11 +345,16 @@ calculateButton.pack()
 root.bind("<Return>", quadraticProgram)
 
 # Clear Button -- Executes earlier function
-clearButton = Button(rootFrame, text = "Clear", command = clear, fg = "#000000", highlightbackground = "#800080")
+clearButton = Button(rootFrame, text = "Clear", fg = "#000000", highlightbackground = "#800080")
+clearButton.bind("<Button-1>", clear)
 clearButton.pack()
+root.bind("<Control-BackSpace>", clear)
+root.bind("<Command-BackSpace>", clear)
 
 # Quit Button -- Executes Earlier function
-quitButton = Button(rootFrame, text = "Quit", command = quitProgram, fg = "#000000", highlightbackground = "#800080")
+quitButton = Button(rootFrame, text = "Quit", fg = "#000000", highlightbackground = "#800080")
+quitButton.bind("<Button-1>", quitProgram)
 quitButton.pack()
+root.bind("<Control-q>", quitProgram)
 
 root.mainloop()
