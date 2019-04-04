@@ -270,7 +270,7 @@ def quitProgram(event):
   root.destroy()
 
 def clear(event):
-  global rootFrame, root, welcome, inputLabel, userInputEntry, silverCreekLogo, logoLabel, calculateButton, clearButton
+  global rootFrame, root, welcome, inputLabel, userInputEntry, calculateButton, clearButton
   rootFrame.destroy()
   rootFrame = Frame(root, bg = '#1d1f21')
   rootFrame.pack()
